@@ -14,7 +14,7 @@ public class EPLPipelineRunner
 
     public static void main(String[] args) {
         Pipeline p = TestPipeline.create().enableAbandonedNodeEnforcement(false);
-        String[] pipelineOptions = { "--tempLocation=./temp/", "--dataInput=/Users/mar24/IdeaProjects/de-challenge-v2/data/*", "--outputDir=/Users/mar24/IdeaProjects/de-challenge-v2/src/main/resources/output/", "--fileExtension=.json" };
+        String[] pipelineOptions = { "--dataInput=C:\\Users\\Acer\\IdeaProjects\\de-challenge-v2\\data\\*", "--outputDir=C:\\Users\\Acer\\IdeaProjects\\de-challenge-v2\\src\\main\\resources\\output\\", "--fileExtension=.json" };
         EPLPipeline.main(pipelineOptions);
         p.run().waitUntilFinish();
     }

@@ -1,0 +1,8 @@
+For the epl architecture challenge
+Upstream systems
+        * EPL Cloud Solution
+        * Owner server of player stats devices
+
+The feed to the job has been selected as channel pubsub
+The processing and stats data will be handled through a dataflow streaming engine
+The processed joined data will be delivered though pubsub, in real time to sport sites, and windowed output to debt houses(if needed 5 minutes

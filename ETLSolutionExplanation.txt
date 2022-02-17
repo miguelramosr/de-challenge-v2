@@ -1,0 +1,20 @@
+ETL-EPL-CHALLENGE
+
+This Java Project was developed using apache beam as main framework to perform task in a distributed fashion way.
+The EPL data is raw json format which lead us to parse the file content into an entry domain.
+Since in order to have the highest ranks of scores, points or another field that the client might want to order the data based on. Its required event explicit or implicit to have the data of a full season in a single moment
+ to perform this type of operation. Given that since the raw full json was parsed into entries on a single process, it didn't make sense t have it spllited the logic of transformation & processing into multiples beam fn. So this fn was used and adapted to add all required information depending on the report that was required.
+
+This ETL EPL job will extract the data, from a most likely GSC bucket of even the local filesystem
+This ETL EPL job will process & transform, the season data into multiple entries and will populate the additional data into different domain like report-
+This ETL EPL job will load the result of this process back into a GCS bucket, it could also be extended to map into TableRow to add this data into Bigquery or another data system.
+
+Configuration required,
+
+In order to run this Job you will need to configure the required options
+dataInput (Input location for the job, it could be directly just one season file or wildcard to use them all)
+outputDir (Output location for the job reports, it could work over localfile system  or GCS storage)
+fileExtension (just naming suffix for the report)
+
+The code contains a simple test class to run the full job, which make it easier to check the results.
+It can be configured the paths in WIN OS system like or Linux like system.

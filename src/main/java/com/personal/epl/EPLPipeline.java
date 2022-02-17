@@ -72,21 +72,21 @@ public class EPLPipeline {
     }
 
     public static void loadResults(PCollection collectionDesired,String type,EPLOptions options ){
-        String extension = options.getFileExtension();
+        String extension = options.getFileExtension().toString();
         if(collectionDesired.getTypeDescriptor().toString().equals(SEASON_DOMAIN)){
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLSeasonDomain>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2,extension )).to(options.getOutputDir()+type+"/").withTempDirectory(options.getTempLocation()));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2,extension )).to(options.getOutputDir()+type+"/"));
         }
         else  if(collectionDesired.getTypeDescriptor().toString().equals(HIGHEST_SCORE_DOMAIN)){
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLSeasonHighestScorers>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/").withTempDirectory(options.getTempLocation()));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/"));
         }
         else  if(collectionDesired.getTypeDescriptor().toString().equals(GOALS_RATIO_DOMAIN)){
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLShotsRatio>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/").withTempDirectory(options.getTempLocation()));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/"));
         }
 
     }

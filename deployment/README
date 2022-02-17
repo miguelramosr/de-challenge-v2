@@ -1,0 +1,27 @@
+Deployment
+
+Over this challenge the technology even its open source, the best fit to run this wold be dataflow from goole
+
+The deployment was done using dataflow templates for which the instruction will follow
+In order to deploy a template
+
+1)
+mvn compile exec:java -Dexec.mainClass=com.personal.epl.EPLPipeline
+-Dexec.args="--runner=DataflowRunner
+--project=spherical-wave-341512
+--stagingLocation=gs://test-base-bucket-personal/staging
+--templateLocation=gs://test-base-bucket-personal/templates/challenge
+--region=us-east1"
+
+Where
+*mainClass is the pipelineExecutable
+*project is the project where it will be deployed
+*template location where the file generated will be set
+
+To access to this deployed flow please email the user accounts.
+How to run this deployed template, is following the template creation on dataflow consoleUI
+
+Previously executed job
+https://console.cloud.google.com/dataflow/jobs/us-east1/2022-02-17_07_34_49-13353537185060073474?project=spherical-wave-341512
+
+
