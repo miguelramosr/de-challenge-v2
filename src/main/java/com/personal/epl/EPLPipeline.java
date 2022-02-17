@@ -51,7 +51,6 @@ public class EPLPipeline {
         PCollection<EPLSeasonDomain> winners = transformedTuple.get(positionTablePerSeason);
         PCollection<EPLSeasonHighestScorers> scorersPCollection = transformedTuple.get(positionGoalsTeamPerSeason);
         PCollection<EPLShotsRatio> shotsRatio = transformedTuple.get(shotsGoalsRatio);
-//        String outputDir = options.getOutputDir().get();
         showResults(winners, "WinnerPerSeason");
         showResults(scorersPCollection, "HighestScoreResults");
         showResults(shotsRatio, "GoalsShotRatio");
@@ -87,7 +86,6 @@ public class EPLPipeline {
                     withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(output+type+"/"));
         }
         else  if(collectionDesired.getTypeDescriptor().toString().equals(GOALS_RATIO_DOMAIN)){
-            String finalExtension2 = extension;
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLShotsRatio>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
                     withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(output+type+"/"));
