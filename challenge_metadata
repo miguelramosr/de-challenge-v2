@@ -8,7 +8,8 @@
       ],
       "name": "dataInput",
       "helpText": "Path of the file pattern glob to read from - for example, gs://test-base-bucket-personal/challenge/output//",
-      "label": "Input Cloud Storage file(s)"
+      "label": "Input Cloud Storage file(s)",
+	  "isOptional": "true"
     },
     {
       "regexes": [
@@ -16,12 +17,15 @@
       ],
       "name": "outputDir",
       "helpText": "Path and filename prefix for writing output files - for example, gs://test-base-bucket-personal/challenge/input/",
-      "label": "Output Cloud Storage file(s)"
+      "label": "Output Cloud Storage file(s)",
+	  "isOptional": "true"
+
     },
 	{
       "name": "fileExtension",
       "helpText": "File Extension desired for output reports - For exampl .json",
-      "label": "FIle extension"
+      "label": "FIle extension",
+	  "isOptional": "true"
     }
   ]
 }

@@ -24,4 +24,4 @@ How to run this deployed template, is following the template creation on dataflo
 Previously executed job
 https://console.cloud.google.com/dataflow/jobs/us-east1/2022-02-17_07_34_49-13353537185060073474?project=spherical-wave-341512
 
-
+A configuration template was created to make it easier the configuration of the job
