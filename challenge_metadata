@@ -1,0 +1,27 @@
+{
+  "description": "Pipeline to generate reports for EPL Challene",
+  "name": "challenge",
+  "parameters": [
+    {
+      "regexes": [
+        "^gs:\\/\\/[^\\n\\r]+$"
+      ],
+      "name": "dataInput",
+      "helpText": "Path of the file pattern glob to read from - for example, gs://test-base-bucket-personal/challenge/output//",
+      "label": "Input Cloud Storage file(s)"
+    },
+    {
+      "regexes": [
+        "^gs:\\/\\/[^\\n\\r]+$"
+      ],
+      "name": "outputDir",
+      "helpText": "Path and filename prefix for writing output files - for example, gs://test-base-bucket-personal/challenge/input/",
+      "label": "Output Cloud Storage file(s)"
+    },
+	{
+      "name": "fileExtension",
+      "helpText": "File Extension desired for output reports - For exampl .json",
+      "label": "FIle extension"
+    }
+  ]
+}
