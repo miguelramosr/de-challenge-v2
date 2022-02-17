@@ -17,3 +17,7 @@ dataInput (Input location for the job, it could be directly just one season file
 The resuls are being written into  gs://test-base-bucket-personal/challenge/output/
 The code contains a simple test class to run the full job, which make it easier to check the results.
 It can be configured the paths in WIN OS system like or Linux like system.
+
+For a dry run local execution please just rename the outut variable to local file system directory
+Over EPL Pipeline
+"gs://test-base-bucket-personal/challenge/output/";
