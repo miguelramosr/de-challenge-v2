@@ -14,7 +14,7 @@ public class EPLPipelineRunner
 
     public static void main(String[] args) {
         Pipeline p = TestPipeline.create().enableAbandonedNodeEnforcement(false);
-        String[] pipelineOptions = { "--dataInput=C:\\Users\\Acer\\IdeaProjects\\de-challenge-v2\\data\\*" };
+        String[] pipelineOptions = { "--dataInput=src/main/resources/data/*" };
         EPLPipeline.main(pipelineOptions);
         p.run().waitUntilFinish();
     }

@@ -26,7 +26,7 @@ public class EPLPipeline {
     private static final String SEASON_DOMAIN = EPLSeasonDomain.class.getCanonicalName();
     private static final String HIGHEST_SCORE_DOMAIN = EPLSeasonHighestScorers.class.getCanonicalName();
     private static final String GOALS_RATIO_DOMAIN = EPLShotsRatio.class.getCanonicalName();
-    private static String output = "gs://test-base-bucket-personal/challenge/output/";
+    private static String output = "src/main/resources/output/";
     private static String extension = ".json";
 
     public static void main(String[] args) {
