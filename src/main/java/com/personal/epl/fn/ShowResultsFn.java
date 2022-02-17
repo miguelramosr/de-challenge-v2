@@ -4,6 +4,7 @@ import com.google.api.services.bigquery.model.TableSchema;
 import com.personal.epl.domain.EPLSeasonDomain;
 import com.personal.epl.domain.EPLSeasonHighestScorers;
 import com.personal.epl.domain.EPLShotsRatio;
+import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.transforms.DoFn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,6 @@ public class ShowResultsFn<t> extends DoFn<t, String> {
         else if (context.element() instanceof EPLShotsRatio){
              element = (EPLShotsRatio) context.element();
         }
-        LOGGER.info(element.toString());
         context.output(element.toString());
     }
 

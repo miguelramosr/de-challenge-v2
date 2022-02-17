@@ -26,6 +26,8 @@ public class EPLPipeline {
     private static final String SEASON_DOMAIN = EPLSeasonDomain.class.getCanonicalName();
     private static final String HIGHEST_SCORE_DOMAIN = EPLSeasonHighestScorers.class.getCanonicalName();
     private static final String GOALS_RATIO_DOMAIN = EPLShotsRatio.class.getCanonicalName();
+    private static String output = "gs://test-base-bucket-personal/challenge/output/";
+    private static String extension = ".json";
 
     public static void main(String[] args) {
         EPLPipeline.setup(args);
@@ -49,6 +51,7 @@ public class EPLPipeline {
         PCollection<EPLSeasonDomain> winners = transformedTuple.get(positionTablePerSeason);
         PCollection<EPLSeasonHighestScorers> scorersPCollection = transformedTuple.get(positionGoalsTeamPerSeason);
         PCollection<EPLShotsRatio> shotsRatio = transformedTuple.get(shotsGoalsRatio);
+//        String outputDir = options.getOutputDir().get();
         showResults(winners, "WinnerPerSeason");
         showResults(scorersPCollection, "HighestScoreResults");
         showResults(shotsRatio, "GoalsShotRatio");
@@ -72,21 +75,22 @@ public class EPLPipeline {
     }
 
     public static void loadResults(PCollection collectionDesired,String type,EPLOptions options ){
-        String extension = options.getFileExtension().toString();
+
         if(collectionDesired.getTypeDescriptor().toString().equals(SEASON_DOMAIN)){
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLSeasonDomain>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2,extension )).to(options.getOutputDir()+type+"/"));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(output+type+"/"));
         }
         else  if(collectionDesired.getTypeDescriptor().toString().equals(HIGHEST_SCORE_DOMAIN)){
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLSeasonHighestScorers>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/"));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(output+type+"/"));
         }
         else  if(collectionDesired.getTypeDescriptor().toString().equals(GOALS_RATIO_DOMAIN)){
+            String finalExtension2 = extension;
             collectionDesired.apply("Writing " +  type, FileIO.<String, EPLShotsRatio>writeDynamic().by(e1 -> e1.getSeason()).
                     withDestinationCoder(StringUtf8Coder.of()).via(Contextful.fn(e2 -> e2.toString()), TextIO.sink()).
-                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(options.getOutputDir()+type+"/"));
+                    withNaming(e2 -> FileIO.Write.defaultNaming(e2, extension)).to(output+type+"/"));
         }
 
     }

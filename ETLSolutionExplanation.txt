@@ -13,8 +13,7 @@ Configuration required,
 
 In order to run this Job you will need to configure the required options
 dataInput (Input location for the job, it could be directly just one season file or wildcard to use them all)
-outputDir (Output location for the job reports, it could work over localfile system  or GCS storage)
-fileExtension (just naming suffix for the report)
+
 
 The code contains a simple test class to run the full job, which make it easier to check the results.
 It can be configured the paths in WIN OS system like or Linux like system.
